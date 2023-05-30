@@ -6,19 +6,6 @@ public class StartMenu : MonoBehaviour
 {
 	[SerializeField] private TMP_InputField inputField;
 
-	private static bool setRes;
-
-
-    private void Awake()
-    {
-        if(setRes)
-			return;
-
-		setRes = true;
-		Screen.fullScreen = false;
-		Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
-    }
-
 
     public void Load()
 	{
