@@ -13,12 +13,14 @@ public class ProjectManager : MonoBehaviour
     {
         public Node.Serializable[] nodes;
         public Node.Connection[] connections;
+        public Vector2 cameraPos;
 
 
-        public Project(Node.Serializable[] nodes, Node.Connection[] connections)
+        public Project(Node.Serializable[] nodes, Node.Connection[] connections, Vector2 cameraPos)
         {
             this.nodes = nodes;
             this.connections = connections;
+            this.cameraPos = cameraPos;
         }
     }
 
@@ -77,12 +79,13 @@ public class ProjectManager : MonoBehaviour
 
         var connections = instance.connections.ToArray();
 
-        return JsonUtility.ToJson(new Project(nodes, connections), true);
+        return JsonUtility.ToJson(new Project(nodes, connections, CameraMovement.instance.offset), true);
     }
 
     public static void LoadJson(string json)
     {
         var project = JsonUtility.FromJson<Project>(json);
+        CameraMovement.instance.offset = project.cameraPos;
 
         foreach(var n in project.nodes)
         {

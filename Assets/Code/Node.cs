@@ -115,7 +115,7 @@ public class Node : MonoBehaviour
 			var line = ProjectManager.instance.tempLine;
 			line.gameObject.SetActive(true);
 			line.SetPosition(0, (connectionStartedWithInput ? connectorIn : connectorOut).position);
-			line.SetPosition(1, ProjectManager.instance.camera.ScreenToWorldPoint(Input.mousePosition));
+			line.SetPosition(1, (Vector2)ProjectManager.instance.camera.ScreenToWorldPoint(Input.mousePosition));
 			line.startColor = accentColor;
 			line.endColor = Color.white;
 		}
@@ -201,7 +201,7 @@ public class Node : MonoBehaviour
 			colorEditor.Done();
 
 		colorEditor.gameObject.SetActive(true);
-		colorEditor.transform.localPosition = (Vector2)transform.position + Vector2.one * 100;
+		colorEditor.transform.localPosition = (Vector2)transform.localPosition + Vector2.one * 100;
 		colorEditor.selectedNode = this;
 		colorEditor.OnOpen();
 
