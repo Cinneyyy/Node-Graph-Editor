@@ -6,8 +6,21 @@ public class StartMenu : MonoBehaviour
 {
 	[SerializeField] private TMP_InputField inputField;
 
+	private static bool setRes;
 
-	public void Load()
+
+    private void Awake()
+    {
+        if(setRes)
+			return;
+
+		setRes = true;
+		Screen.fullScreen = false;
+		Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+    }
+
+
+    public void Load()
 	{
 		ProjectManager.projectName = inputField.text;
 		ProjectManager.createNewProject = false;
