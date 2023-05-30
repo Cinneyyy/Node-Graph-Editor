@@ -49,12 +49,16 @@ public class Node : MonoBehaviour
 		}
 
 
-		public static bool operator ==(Connection from, Connection to) => from.from == to.from && from.to == to.to;
-		public static bool operator !=(Connection from, Connection to) => from.from != to.from || from.to != to.to;
+		public string GetOther(string node)
+			=> from != node ? from : to;
 
 
         public override bool Equals(object obj) => base.Equals(obj);
         public override int GetHashCode() => base.GetHashCode();
+
+
+		public static bool operator ==(Connection from, Connection to) => from.from == to.from && from.to == to.to;
+		public static bool operator !=(Connection from, Connection to) => from.from != to.from || from.to != to.to;
     }
 
 
@@ -170,6 +174,15 @@ public class Node : MonoBehaviour
 
 	public void DestroyNode()
 	{
+		foreach(var ac in associatedConnections)
+		{
+			ProjectManager.GetNode(ac.GetOther(guid)).associatedConnections.Remove(ac);
+			ProjectManager.instance.connections.Remove(ac);
+			ProjectManager.instance.connectionLines.Remove(ac.renderer.gameObject);
+			Destroy(ac.renderer.gameObject);
+		}
+		associatedConnections.Clear();
+
 		ProjectManager.RemoveNode(this);
 		Destroy(gameObject);
 	}
@@ -201,7 +214,8 @@ public class Node : MonoBehaviour
 			colorEditor.Done();
 
 		colorEditor.gameObject.SetActive(true);
-		colorEditor.transform.localPosition = (Vector2)transform.localPosition + Vector2.one * 100;
+		Vector2 min = new(-375f, -140f), max = new(375f, 75f), target = (Vector2)transform.localPosition + Vector2.one * 100;
+		colorEditor.transform.localPosition = new(Mathf.Clamp(target.x, min.x, max.x), Mathf.Clamp(target.y, min.y, max.y));
 		colorEditor.selectedNode = this;
 		colorEditor.OnOpen();
 
@@ -229,7 +243,7 @@ public class Node : MonoBehaviour
 			creatingConnection = false;
 			connectionStarter.associatedConnections.Add(connection);
 			associatedConnections.Add(connection);
-			ProjectManager.BuildConnectionLine(connection);
+			ProjectManager.BuildConnectionLine(connection, false);
 			ProjectManager.instance.tempLine.gameObject.SetActive(false);
 			ContextMenu.suppress = false;
 		}

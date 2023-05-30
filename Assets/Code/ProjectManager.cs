@@ -90,15 +90,20 @@ public class ProjectManager : MonoBehaviour
         foreach(var n in project.nodes)
         {
             var node = CreateNewNode();
+
             node.title = n.title;
             node.desc = n.description;
             node.guid = n.guid;
             node.mainColor = n.mainColor;
             node.accentColor = n.accentColor;
-            node.transform.position = n.position;
+            node.transform.localPosition = n.position;
+
+            node.UpdateColors();
+            node.UpdateVisuals();
         }
 
         instance.connections = project.connections.ToList();
+        BuildConnectionLines();
     }
 
     public static Vector2 GetScaledMousePos()
@@ -123,24 +128,29 @@ public class ProjectManager : MonoBehaviour
         instance.connectionLines.Clear();
 
         foreach(var c in instance.connections)
-            BuildConnectionLine(c);
+            BuildConnectionLine(c, false);
     }
 
     public static Node GetNode(string guid)
         => instance.nodes.Find(n => n.guid == guid);
 
-    public static void BuildConnectionLine(Node.Connection connection)
+    public static void BuildConnectionLine(Node.Connection connection, bool addToList)
     {
         var line = Instantiate(instance.linePrefab, instance.connectionParent).GetComponent<LineRenderer>();
-        instance.connectionLines.Add(line.gameObject);
+        
+        if(addToList)
+            instance.connectionLines.Add(line.gameObject);
 
         Node from = GetNode(connection.from), to = GetNode(connection.to);
+
+        from.associatedConnections.Add(connection);
+        to.associatedConnections.Add(connection);
 
         line.startColor = from.accentColor;
         line.endColor = to.accentColor;
 
-        line.SetPosition(0, from.connectorOut.position);
-        line.SetPosition(1, to.connectorIn.position);
+        line.SetPosition(0, (Vector2)from.connectorOut.position);
+        line.SetPosition(1, (Vector2)to.connectorIn.position);
 
         connection.renderer = line;
     }
