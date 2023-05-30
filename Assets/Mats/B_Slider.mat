@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: B_Slider
+  m_Shader: {fileID: 4800000, guid: 2f797ffe4e939774c93afa66a6862f7d, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha0: 1
+    - _Alpha1: 1
+    - _Alpha2: -1
+    - _Alpha3: -1
+    - _Alpha4: -1
+    - _Alpha5: -1
+    - _Alpha6: -1
+    - _Alpha7: -1
+    - _AlphaTime0: 0
+    - _AlphaTime1: 1
+    - _AlphaTime2: -1
+    - _AlphaTime3: -1
+    - _AlphaTime4: -1
+    - _AlphaTime5: -1
+    - _AlphaTime6: -1
+    - _AlphaTime7: -1
+    - _Alphas: 2
+    - _ColorMask: 15
+    - _ColorTime0: 0
+    - _ColorTime1: 1
+    - _ColorTime2: -1
+    - _ColorTime3: -1
+    - _ColorTime4: -1
+    - _ColorTime5: -1
+    - _ColorTime6: -1
+    - _ColorTime7: -1
+    - _Colors: 2
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 1, g: 1, b: 0, a: 1}
+    - _Color1: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 1, g: 0, b: 1, a: 1}
+    - _Color3: {r: 1, g: 0, b: 1, a: 1}
+    - _Color4: {r: 1, g: 0, b: 1, a: 1}
+    - _Color5: {r: 1, g: 0, b: 1, a: 1}
+    - _Color6: {r: 1, g: 0, b: 1, a: 1}
+    - _Color7: {r: 1, g: 0, b: 1, a: 1}
+  m_BuildTextureStacks: []
