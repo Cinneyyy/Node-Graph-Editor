@@ -116,6 +116,7 @@ public class ProjectManager : MonoBehaviour
     {
         var node = Instantiate(instance.nodePrefab, instance.nodeParent).GetComponent<Node>();
         node.transform.localPosition = GetOffsetScaledMousePos();
+        node.transform.position -= node.transform.parent.position;
         node.guid = Guid.NewGuid().ToString();
         RegisterNode(node);
         return node;

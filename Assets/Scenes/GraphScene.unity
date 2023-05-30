@@ -3133,7 +3133,7 @@ MonoBehaviour:
   nodeParent: {fileID: 1154154228}
   connectionParent: {fileID: 762857550}
   linePrefab: {fileID: 7552934196551359458, guid: d0806a89a63e0ef439566b14d555d6cc, type: 3}
-  defaultProjectJson: {fileID: 0}
+  defaultProjectJson: {fileID: 4900000, guid: bc2bd37195760c645a9207fb32d6252c, type: 3}
   camera: {fileID: 519420031}
   tempLine: {fileID: 796508103334435600}
   colorEditor: {fileID: 1247408647}
