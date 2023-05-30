@@ -214,7 +214,7 @@ public class Node : MonoBehaviour
 			colorEditor.Done();
 
 		colorEditor.gameObject.SetActive(true);
-		Vector2 min = new(-375f, -140f), max = new(375f, 75f), target = (Vector2)transform.localPosition + Vector2.one * 100;
+		Vector2 min = new(-375f, -140f), max = new(375f, 75f), target = (Vector2)nodeRect.localPosition + (Vector2)nodeRect.parent.localPosition + Vector2.one * 100;
 		colorEditor.transform.localPosition = new(Mathf.Clamp(target.x, min.x, max.x), Mathf.Clamp(target.y, min.y, max.y));
 		colorEditor.selectedNode = this;
 		colorEditor.OnOpen();

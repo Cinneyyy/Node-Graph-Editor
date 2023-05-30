@@ -589,16 +589,16 @@ MonoBehaviour:
     useAccentColor: 1
   - obj: {fileID: 5259132293662734167}
     tint: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
-    useAccentColor: 1
+    useAccentColor: 0
   - obj: {fileID: 6578043292954442542}
     tint: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
-    useAccentColor: 1
+    useAccentColor: 0
   - obj: {fileID: 5259132292386010574}
     tint: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
-    useAccentColor: 1
+    useAccentColor: 0
   - obj: {fileID: 1278818137497575856}
     tint: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
-    useAccentColor: 1
+    useAccentColor: 0
   connectorIn: {fileID: 5259132293662734166}
   connectorOut: {fileID: 5259132292386010609}
   mainColor: {r: 1, g: 1, b: 1, a: 1}

@@ -121,6 +121,9 @@ public class ProjectManager : MonoBehaviour
         return node;
     }
 
+    public static Vector2 ScaleToCanvas(Vector2 v)
+        => v / instance.canvas.scaleFactor;
+
     public static void BuildConnectionLines()
     {
         foreach(var cl in instance.connectionLines)
