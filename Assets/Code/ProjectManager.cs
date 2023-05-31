@@ -159,8 +159,11 @@ public class ProjectManager : MonoBehaviour
         connection.renderer = line;
     }
 
-    public static void UpdateConnectionLine(Node.Connection connection)
+    public static bool UpdateConnectionLine(Node.Connection connection)
     {
+        if(connection.renderer == null)
+            return false;
+
         Node from = GetNode(connection.from), to = GetNode(connection.to);
 
         connection.renderer.startColor = from.accentColor;
@@ -168,11 +171,20 @@ public class ProjectManager : MonoBehaviour
 
         connection.renderer.SetPosition(0, from.connectorOut.position);
         connection.renderer.SetPosition(1, to.connectorIn.position);
+
+        return true;
     }
 
     public static void UpdateAssociatedConnectionLines(Node node)
     {
+        List<Node.Connection> remove = new();
+
         foreach(var ac in node.associatedConnections)
-            UpdateConnectionLine(ac);
+            if(!UpdateConnectionLine(ac))
+                remove.Add(ac);
+
+        if(remove.Count >= 1)
+            foreach(var r in remove)
+                node.associatedConnections.Remove(r);
     }
 }

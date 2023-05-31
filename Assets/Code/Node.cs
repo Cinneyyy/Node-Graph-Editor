@@ -57,8 +57,16 @@ public class Node : MonoBehaviour
         public override int GetHashCode() => base.GetHashCode();
 
 
-		public static bool operator ==(Connection from, Connection to) => from.from == to.from && from.to == to.to;
-		public static bool operator !=(Connection from, Connection to) => from.from != to.from || from.to != to.to;
+		public static bool operator ==(Connection from, Connection to) 
+		{
+			if(from is null)
+				return to is null;
+			else if(to is null)
+				return false;
+			
+			return from.from == to.from && from.to == to.to;
+		}
+		public static bool operator !=(Connection from, Connection to) => !(from == to);
     }
 
 
@@ -189,6 +197,9 @@ public class Node : MonoBehaviour
 
 	public void StartDrag()
 	{
+		if(!Input.GetKey(KeyCode.Mouse0))
+			return;
+
 		dragging = true;
 		dragOffset = (Vector2)transform.localPosition - ProjectManager.GetScaledMousePos();
 
@@ -239,6 +250,9 @@ public class Node : MonoBehaviour
 				return;
 
 			Connection connection = new(connectionStarter, this, connectionStartedWithInput);
+			if(associatedConnections.Exists(c => c == connection))
+				return;
+
             ProjectManager.instance.connections.Add(connection);
 			creatingConnection = false;
 			connectionStarter.associatedConnections.Add(connection);
@@ -260,14 +274,29 @@ public class Node : MonoBehaviour
 	{
 		foreach(var ac in associatedConnections)
 		{
-			if((inputConnector ? ac.to : ac.from) == guid)
+			if(ac != null && (inputConnector ? ac.to : ac.from) == guid)
 			{
 				ProjectManager.instance.connections.Remove(ac);
-				ProjectManager.GetNode(inputConnector ? ac.from : ac.to).associatedConnections.Remove(ac);
-				associatedConnections.Remove(ac);
 				ProjectManager.instance.connectionLines.Remove(ac.renderer.gameObject);
+				ProjectManager.GetNode(ac.GetOther(guid)).associatedConnections.Remove(ac);
 				Destroy(ac.renderer.gameObject);
 			}
 		}
+
+		ProjectManager.instance.connections.RemoveAll(c => c == null || c.renderer == null);
+		ProjectManager.instance.connectionLines.RemoveAll(c => c == null);
+		foreach(var ac in associatedConnections)
+			if(ac != null && ac.renderer == null)
+			{
+				ProjectManager.GetNode(ac.from).associatedConnections.Remove(ac);
+				ProjectManager.GetNode(ac.to).associatedConnections.Remove(ac);
+			}
+	}
+
+
+	public static void CancelConnectionCreation()
+	{
+		creatingConnection = false;
+		ContextMenu.suppress = false;
 	}
 }

@@ -18,7 +18,10 @@ public class ContextMenu : MonoBehaviour
     public void Open()
 	{
 		if(suppress)
+		{
+			Node.CancelConnectionCreation();
 			return;
+		}
 
 		menuRect.localPosition = ProjectManager.GetOffsetScaledMousePos();
 		menuObj.SetActive(true);
