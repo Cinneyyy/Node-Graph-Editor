@@ -61,6 +61,13 @@ public class ProjectManager : MonoBehaviour
         LoadJson(json);
     }
 
+    private void OnApplicationQuit()
+    {
+        var dt = DateTime.Now;
+        string time = $"{dt.Year:0000}-{dt.Month:00}-{dt.Day:00} {dt.Hour:00}-{dt.Minute:00}-{dt.Second:00}";
+        File.WriteAllText($"{Application.persistentDataPath}/{projectName} (BCKP; {time}).json", GetJson());
+    }
+
 
     public static void RemoveNode(Node node)
         => instance.nodes.Remove(node);
@@ -172,7 +179,7 @@ public class ProjectManager : MonoBehaviour
         connection.renderer.SetPosition(0, from.connectorOut.position);
         connection.renderer.SetPosition(1, to.connectorIn.position);
 
-       // connection.renderer.widthMultiplier = .1f;
+        connection.renderer.widthMultiplier = .1f;
 
         return true;
     }
