@@ -41,12 +41,9 @@ public class ViewMode : MonoBehaviour
 
     public static void EnterViewMode()
     {
-        if(active)
-            return;
-
         instance.viewModeOverlay.SetActive(true);
         instance.toolbar.SetActive(false);
-
+        
         if(ColorEditor.instance.gameObject.activeSelf)
             ColorEditor.instance.Done();
 
@@ -59,9 +56,6 @@ public class ViewMode : MonoBehaviour
 
     public static void ExitViewMode()
     {
-        if(!active) 
-            return;
-
         instance.viewModeOverlay.SetActive(false);
         instance.toolbar.SetActive(true);
 

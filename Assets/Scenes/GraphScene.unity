@@ -1022,7 +1022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &168078587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6409,7 +6409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -151.8, y: -237.57}
+  m_AnchoredPosition: {x: -151.8, y: -202.9}
   m_SizeDelta: {x: 642.99, y: 55.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2028339662
@@ -6434,10 +6434,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: '(View mode options)
 
-    Exit view mode [Escape]
+    Exit view mode [RMB/Escape]
 
-    Toggle this text
-    [Space]'
+    Toggle this
+    text [LMB/Space]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1fa4edfd43ea5d44baa117066ef4e968, type: 2}
   m_sharedMaterial: {fileID: 292062228314858127, guid: 1fa4edfd43ea5d44baa117066ef4e968, type: 2}

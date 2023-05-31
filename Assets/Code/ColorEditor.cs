@@ -35,8 +35,9 @@ public class ColorEditor : MonoBehaviour
 	public static ColorEditor instance { get; private set; }
 
 
-    private void Awake()
+	public ColorEditor()
 		=> instance = this;
+
 
     private void Update()
     {
