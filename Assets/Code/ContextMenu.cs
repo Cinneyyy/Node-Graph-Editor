@@ -17,6 +17,9 @@ public class ContextMenu : MonoBehaviour
 
     public void Open()
 	{
+		if(ViewMode.active)
+			return;
+
 		if(suppress)
 		{
 			Node.CancelConnectionCreation();
@@ -28,10 +31,18 @@ public class ContextMenu : MonoBehaviour
 	}
 	
 	public void Close()
-		=> menuObj.SetActive(false);
+	{
+		if(ViewMode.active)
+			return;
+
+		menuObj.SetActive(false);
+	}
 
 	public void NewNode()
 	{
+		if(ViewMode.active)
+			return;
+
 		ProjectManager.CreateNewNode();
 		Close();
 	}

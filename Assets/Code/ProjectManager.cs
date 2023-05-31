@@ -79,13 +79,13 @@ public class ProjectManager : MonoBehaviour
 
         var connections = instance.connections.ToArray();
 
-        return JsonUtility.ToJson(new Project(nodes, connections, CameraMovement.instance.offset), true);
+        return JsonUtility.ToJson(new Project(nodes, connections, CameraMovement.offset), true);
     }
 
     public static void LoadJson(string json)
     {
         var project = JsonUtility.FromJson<Project>(json);
-        CameraMovement.instance.offset = project.cameraPos;
+        CameraMovement.offset = project.cameraPos;
 
         foreach(var n in project.nodes)
         {

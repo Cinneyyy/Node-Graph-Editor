@@ -32,6 +32,11 @@ public class ColorEditor : MonoBehaviour
 	}
 	private Color initMainColor, initAccentColor;
 
+	public static ColorEditor instance { get; private set; }
+
+
+    private void Awake()
+		=> instance = this;
 
     private void Update()
     {
@@ -65,6 +70,9 @@ public class ColorEditor : MonoBehaviour
 
 	public void SelectColorToEdit(bool mainColor)
 	{
+		if(ViewMode.active)
+			return;
+
 		editingMainColor = mainColor;
 
 		selectedIconMain.SetActive(editingMainColor);
@@ -79,12 +87,18 @@ public class ColorEditor : MonoBehaviour
 
 	public void Done()
 	{
+		if(ViewMode.active)
+			return;
+
 		selectedNode.UpdateColors();
 		gameObject.SetActive(false);
 	}
 
 	public void Cancel()
 	{
+		if(ViewMode.active)
+			return;
+
 		mainColor = initMainColor;
 		accentColor = initAccentColor;
 		selectedNode.UpdateColors();

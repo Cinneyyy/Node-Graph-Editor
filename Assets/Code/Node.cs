@@ -117,6 +117,9 @@ public class Node : MonoBehaviour
 	
     private void Update()
 	{
+		if(ViewMode.active)
+			return;
+
 		if(dragging)
 			CalculateDraggedPos();
 
@@ -154,17 +157,7 @@ public class Node : MonoBehaviour
 
 	public void UpdateVisuals()
 	{
-#if false
-		var desc = descTmp.text;
-		descTmp.text = "_" + desc + "_";
-		descTmp.ForceMeshUpdate();
 		Vector2 rv_desc = descTmp.GetRenderedValues();
-		descTmp.text = desc;
-		descTmp.ForceMeshUpdate();
-#else
-		Vector2 rv_desc = descTmp.GetRenderedValues();
-#endif
-
 		Vector2 rv_title = titleTmp.GetRenderedValues();
 		Vector2 size = new(Mathf.Max(250f, rv_title.x + 50f, rv_desc.x + 50f),
 						   Mathf.Max(125f, rv_desc.y + titleRect.sizeDelta.y + 12.5f));
@@ -182,6 +175,9 @@ public class Node : MonoBehaviour
 
 	public void DestroyNode()
 	{
+		if(ViewMode.active)
+			return;
+
 		foreach(var ac in associatedConnections)
 		{
 			ProjectManager.GetNode(ac.GetOther(guid)).associatedConnections.Remove(ac);
@@ -197,6 +193,9 @@ public class Node : MonoBehaviour
 
 	public void StartDrag()
 	{
+		if(ViewMode.active)
+			return;
+
 		if(!Input.GetKey(KeyCode.Mouse0))
 			return;
 
@@ -208,6 +207,9 @@ public class Node : MonoBehaviour
 
 	public void EndDrag()
 	{
+		if(ViewMode.active)
+			return;
+
 		if(dragging)
 		{
 			CalculateDraggedPos();
@@ -219,6 +221,9 @@ public class Node : MonoBehaviour
 
 	public void OpenColorEditor()
 	{
+		if(ViewMode.active)
+			return;
+
 		var colorEditor = ProjectManager.instance.colorEditor;
 
 		if(colorEditor.gameObject.activeSelf)
@@ -238,6 +243,9 @@ public class Node : MonoBehaviour
 
 	public void ClickConnector(bool inputConnector)
 	{
+		if(ViewMode.active)
+			return;
+
 		if(creatingConnection)
 		{
 			if(connectionStarter == this)
@@ -272,6 +280,9 @@ public class Node : MonoBehaviour
 
 	public void ClearConnections(bool inputConnector)
 	{
+		if(ViewMode.active)
+			return;
+
 		foreach(var ac in associatedConnections)
 		{
 			if(ac != null && (inputConnector ? ac.to : ac.from) == guid)
@@ -296,6 +307,9 @@ public class Node : MonoBehaviour
 
 	public static void CancelConnectionCreation()
 	{
+		if(ViewMode.active)
+			return;
+
 		creatingConnection = false;
 		ContextMenu.suppress = false;
 	}

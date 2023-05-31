@@ -22,6 +22,12 @@ public class Toolbar : MonoBehaviour
 	public void Exit()
 		=> exitPopup.SetActive(true);
 
+	public void EnterViewMode()
+		=> ViewMode.EnterViewMode();
+
+	public void ExitViewMode()
+		=> ViewMode.ExitViewMode();
+
 	public void EP_Cancel()
 		=> exitPopup.SetActive(false);
 
