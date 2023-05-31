@@ -52,6 +52,9 @@ public class Node : MonoBehaviour
 		public string GetOther(string node)
 			=> from != node ? from : to;
 
+		public Node GetNode(bool fromNode)
+			=> ProjectManager.GetNode(fromNode ? from : to);
+
 
         public override bool Equals(object obj) => base.Equals(obj);
         public override int GetHashCode() => base.GetHashCode();

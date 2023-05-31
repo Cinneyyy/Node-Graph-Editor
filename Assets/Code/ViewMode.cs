@@ -1,4 +1,5 @@
 using UnityEngine;
+using CM = CameraMovement;
 
 public class ViewMode : MonoBehaviour
 {
@@ -15,6 +16,18 @@ public class ViewMode : MonoBehaviour
     {
         if(!active)
             return;
+
+        float width = Mathf.Clamp(CM.zoomLevel, .2f, 5f) / 10f;
+        foreach(var cl in ProjectManager.instance.connections)
+        {
+            if(cl?.renderer == null)
+                continue;
+
+            cl.renderer.SetPosition(0, cl.GetNode(true).connectorOut.position);
+            cl.renderer.SetPosition(1, cl.GetNode(false).connectorIn.position);
+
+            cl.renderer.widthMultiplier = width;
+        }
 
         foreach(var kc in new[] {
             KeyCode.Space,
@@ -39,6 +52,10 @@ public class ViewMode : MonoBehaviour
     }
 
 
+    public void EnableCtxMenu()
+        => ContextMenu.pSupress = false;
+
+
     public static void EnterViewMode()
     {
         instance.viewModeOverlay.SetActive(true);
@@ -48,8 +65,9 @@ public class ViewMode : MonoBehaviour
             ColorEditor.instance.Done();
 
         ContextMenu.instance.Close();
+        ContextMenu.pSupress = true;
 
-        CameraMovement.zoomEnabled = true;
+        CM.zoomEnabled = true;
 
         active = true;
     }
@@ -59,9 +77,13 @@ public class ViewMode : MonoBehaviour
         instance.viewModeOverlay.SetActive(false);
         instance.toolbar.SetActive(true);
 
-        CameraMovement.zoomEnabled = false;
-        CameraMovement.instance.nodeParent.localScale = Vector3.one;
+        CM.zoomEnabled = false;
+        CM.instance.nodeParent.localScale = Vector3.one;
+
+        ProjectManager.UpdateAllConnectionLines();
 
         active = false;
+
+        instance.Invoke(nameof(EnableCtxMenu), .1f);
     }
 }

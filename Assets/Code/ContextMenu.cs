@@ -8,7 +8,7 @@ public class ContextMenu : MonoBehaviour
 	public bool isOpen { get; private set; }
 
 	public static ContextMenu instance { get; private set; }
-	public static bool suppress;
+	public static bool suppress, pSupress;
 
 
     private void Awake()
@@ -17,7 +17,7 @@ public class ContextMenu : MonoBehaviour
 
     public void Open()
 	{
-		if(ViewMode.active)
+		if(ViewMode.active || pSupress)
 			return;
 
 		if(suppress)

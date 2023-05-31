@@ -2,7 +2,7 @@
 
 public class CameraMovement : MonoBehaviour
 {
-    private const float MinZoom = 0.1f, MaxZoom = 5f;
+    public const float MinZoom = 0.1f, MaxZoom = 5f;
 
     public Transform nodeParent;
 

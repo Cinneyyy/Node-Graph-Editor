@@ -161,7 +161,7 @@ public class ProjectManager : MonoBehaviour
 
     public static bool UpdateConnectionLine(Node.Connection connection)
     {
-        if(connection.renderer == null)
+        if(connection?.renderer == null)
             return false;
 
         Node from = GetNode(connection.from), to = GetNode(connection.to);
@@ -171,6 +171,8 @@ public class ProjectManager : MonoBehaviour
 
         connection.renderer.SetPosition(0, from.connectorOut.position);
         connection.renderer.SetPosition(1, to.connectorIn.position);
+
+       // connection.renderer.widthMultiplier = .1f;
 
         return true;
     }
@@ -186,5 +188,11 @@ public class ProjectManager : MonoBehaviour
         if(remove.Count >= 1)
             foreach(var r in remove)
                 node.associatedConnections.Remove(r);
+    }
+
+    public static void UpdateAllConnectionLines()
+    {
+        foreach(var cl in instance.connections)
+            UpdateConnectionLine(cl);
     }
 }
