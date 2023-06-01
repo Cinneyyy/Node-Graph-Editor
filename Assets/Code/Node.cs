@@ -33,6 +33,7 @@ public class Node : MonoBehaviour
 			accentColor = node.accentColor;
 			position = node.transform.localPosition;
 			guid = node.guid;
+			accentOutline = node.accentOutline;
 		}
 	}
 
