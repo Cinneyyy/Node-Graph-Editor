@@ -58,7 +58,7 @@ public class ProjectManager : MonoBehaviour
         else
             json = File.ReadAllText(path);
 
-        Toolbar.instance.SetProjName(Path.GetFileNameWithoutExtension(path));
+        Toolbar.instance.SetProjName(GetExactPathName(path));
         LoadJson(json);
     }
 
@@ -150,6 +150,18 @@ public class ProjectManager : MonoBehaviour
 
     public static Node GetNode(string guid)
         => instance.nodes.Find(n => n.guid == guid);
+
+    public static string GetExactPathName(string pathName)
+    {
+        if(!(File.Exists(pathName) || Directory.Exists(pathName)))
+            return pathName;
+
+        var di = new DirectoryInfo(pathName);
+
+        return di.Parent != null ? 
+            Path.Combine(GetExactPathName(di.Parent.FullName), di.Parent.GetFileSystemInfos(di.Name)[0].Name) : 
+            di.Name.ToUpper();
+    }
 
     public static void BuildConnectionLine(Node.Connection connection, bool addToList)
     {
