@@ -116,7 +116,9 @@ public class ColorEditor : MonoBehaviour
 	{
 		initMainColor = mainColor;
 		initAccentColor = accentColor;
-		initAccentOutline = selectedNode.accentOutline;
+		initAccentOutline 
+			= accentOutlineToggle.isOn
+			= selectedNode.accentOutline;
 
 		SelectColorToEdit(true);
 	}

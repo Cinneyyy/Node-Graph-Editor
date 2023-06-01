@@ -65,7 +65,11 @@ public class ProjectManager : MonoBehaviour
     {
         var dt = DateTime.Now;
         string time = $"{dt.Year:0000}-{dt.Month:00}-{dt.Day:00} {dt.Hour:00}-{dt.Minute:00}-{dt.Second:00}";
-        File.WriteAllText($"{Application.persistentDataPath}/{projectName} (BCKP; {time}).json", GetJson());
+        string dir = $"{Application.persistentDataPath}/Backups";
+        if(!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+        File.WriteAllText($"{dir}/{projectName} (BCKP; {time}).json", GetJson());
     }
 
 
