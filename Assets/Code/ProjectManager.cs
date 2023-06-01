@@ -107,6 +107,7 @@ public class ProjectManager : MonoBehaviour
             node.guid = n.guid;
             node.mainColor = n.mainColor;
             node.accentColor = n.accentColor;
+            node.accentOutline = n.accentOutline;
             node.transform.localPosition = n.position;
 
             node.UpdateColors();
