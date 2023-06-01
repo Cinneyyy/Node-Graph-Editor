@@ -13,6 +13,7 @@ public class Node : MonoBehaviour
 		public Graphic obj;
 		public Color tint;
 		public bool useAccentColor;
+		public bool partOfOutline;
 	}
 
 	[Serializable]
@@ -21,6 +22,7 @@ public class Node : MonoBehaviour
 		public string title, description, guid;
 		public Color mainColor, accentColor;
 		public Vector2 position;
+		public bool accentOutline;
 
 
 		public Serializable(Node node)
@@ -102,6 +104,7 @@ public class Node : MonoBehaviour
 	}
 	public Color mainColor = Color.white, accentColor = Color.white;
 	public string guid;
+	public bool accentOutline;
 	public List<Connection> associatedConnections = new();
 
 	private bool dragging;
@@ -171,7 +174,7 @@ public class Node : MonoBehaviour
 	public void UpdateColors()
 	{
 		foreach(var co in coloredObjects)
-			co.obj.color = co.tint * (co.useAccentColor ? accentColor : mainColor);
+			co.obj.color = co.partOfOutline && accentOutline ? accentColor : co.tint * (co.useAccentColor ? accentColor : mainColor);
 		outline.effectColor = toolbar.color;
 		ProjectManager.UpdateAssociatedConnectionLines(this);
 	}
@@ -233,7 +236,7 @@ public class Node : MonoBehaviour
 			colorEditor.Done();
 
 		colorEditor.gameObject.SetActive(true);
-		Vector2 min = new(-375f, -140f), max = new(375f, 75f), target = (Vector2)nodeRect.localPosition + (Vector2)nodeRect.parent.localPosition + Vector2.one * 100;
+		Vector2 min = new(-375f, -120f), max = new(375f, 60f), target = (Vector2)nodeRect.localPosition + (Vector2)nodeRect.parent.localPosition + Vector2.one * 100;
 		colorEditor.transform.localPosition = new(Mathf.Clamp(target.x, min.x, max.x), Mathf.Clamp(target.y, min.y, max.y));
 		colorEditor.selectedNode = this;
 		colorEditor.OnOpen();

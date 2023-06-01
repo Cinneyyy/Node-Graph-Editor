@@ -8,6 +8,7 @@ public class ColorEditor : MonoBehaviour
 	[SerializeField] private Material[] sliderMats = new Material[3];
 	[SerializeField] private Slider[] sliders = new Slider[3];
 	[SerializeField] private TextMeshProUGUI mainColorDisplay, accentColorDisplay;
+	[SerializeField] private Toggle accentOutlineToggle;
 
 	[HideInInspector] public Node selectedNode;
 	public Color mainColor
@@ -31,6 +32,7 @@ public class ColorEditor : MonoBehaviour
 		}
 	}
 	private Color initMainColor, initAccentColor;
+	private bool initAccentOutline;
 
 	public static ColorEditor instance { get; private set; }
 
@@ -50,6 +52,8 @@ public class ColorEditor : MonoBehaviour
 		accentColorDisplay.color = accentColor;
 
 		UpdateSliderMats();
+		selectedNode.accentOutline = accentOutlineToggle.isOn;
+
 		selectedNode.UpdateColors();
     }
 
@@ -102,6 +106,8 @@ public class ColorEditor : MonoBehaviour
 
 		mainColor = initMainColor;
 		accentColor = initAccentColor;
+		selectedNode.accentOutline = initAccentOutline;
+
 		selectedNode.UpdateColors();
 		gameObject.SetActive(false);
 	}
@@ -110,6 +116,7 @@ public class ColorEditor : MonoBehaviour
 	{
 		initMainColor = mainColor;
 		initAccentColor = accentColor;
+		initAccentOutline = selectedNode.accentOutline;
 
 		SelectColorToEdit(true);
 	}

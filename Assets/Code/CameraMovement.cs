@@ -4,17 +4,25 @@ public class CameraMovement : MonoBehaviour
 {
     public const float MinZoom = 0.1f, MaxZoom = 5f;
 
-    public Transform nodeParent;
-
-    [Range(MinZoom, MaxZoom)] public static float zoomLevel = 1f;
-    public static Vector3 zoomVec => new(zoomLevel, zoomLevel, 1f);
-    public static Vector2 offset;
+    [SerializeField] private Transform moveObject, scaleObject;
 
     private Vector2 lastCursorPos;
     private new Camera camera;
 
+    public static float zoomLevel
+    {
+        get => _zoomLevel;
+        set {
+            _zoomLevel = value;
+            instance.scaleObject.localScale = zoomVec;
+        }
+    }
+    public static Vector3 zoomVec => new(zoomLevel, zoomLevel, 1f);
+    public static Vector2 offset;
     public static CameraMovement instance { get; private set; }
     public static bool zoomEnabled;
+
+    [Range(MinZoom, MaxZoom)] private static float _zoomLevel = 1f;
 
 
     private void Awake()
@@ -31,7 +39,7 @@ public class CameraMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.Mouse2))
             offset -= delta;
 
-        nodeParent.position = offset;
+        moveObject.position = offset;
         lastCursorPos = stw;
 
         if(!zoomEnabled)
@@ -42,7 +50,6 @@ public class CameraMovement : MonoBehaviour
         {
             float newZoomLevel = zoomLevel + scroll * Mathf.Pow(Mathf.Min(zoomLevel, .7f), 2.5f);
             zoomLevel = Mathf.Clamp(newZoomLevel, MinZoom, MaxZoom);
-            nodeParent.localScale = zoomVec;
         }
     }
 }

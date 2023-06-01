@@ -551,59 +551,73 @@ MonoBehaviour:
   - obj: {fileID: 5259132292185539511}
     tint: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
     useAccentColor: 0
+    partOfOutline: 0
   - obj: {fileID: 5259132292975684750}
     tint: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
     useAccentColor: 0
+    partOfOutline: 0
   - obj: {fileID: 5259132291563341576}
     tint: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
     useAccentColor: 0
-  - obj: {fileID: 5259132291563341576}
-    tint: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
-    useAccentColor: 0
+    partOfOutline: 1
   - obj: {fileID: 5259132292207965869}
     tint: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
     useAccentColor: 0
+    partOfOutline: 0
   - obj: {fileID: 5259132293640878168}
     tint: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
     useAccentColor: 0
+    partOfOutline: 0
   - obj: {fileID: 5259132293357767834}
     tint: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
     useAccentColor: 0
+    partOfOutline: 0
   - obj: {fileID: 5259132292948842603}
     tint: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     useAccentColor: 1
+    partOfOutline: 0
   - obj: {fileID: 5259132293686086545}
     tint: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     useAccentColor: 1
+    partOfOutline: 0
   - obj: {fileID: 5259132292281902744}
     tint: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     useAccentColor: 1
+    partOfOutline: 0
   - obj: {fileID: 5259132293226377890}
     tint: {r: 1, g: 1, b: 1, a: 1}
     useAccentColor: 1
+    partOfOutline: 0
   - obj: {fileID: 5259132292642897525}
     tint: {r: 1, g: 1, b: 1, a: 1}
     useAccentColor: 1
+    partOfOutline: 0
   - obj: {fileID: 5259132291759014941}
     tint: {r: 1, g: 1, b: 1, a: 1}
     useAccentColor: 1
+    partOfOutline: 0
   - obj: {fileID: 5259132293662734167}
     tint: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
     useAccentColor: 0
+    partOfOutline: 1
   - obj: {fileID: 6578043292954442542}
     tint: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
     useAccentColor: 0
+    partOfOutline: 0
   - obj: {fileID: 5259132292386010574}
     tint: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
     useAccentColor: 0
+    partOfOutline: 1
   - obj: {fileID: 1278818137497575856}
     tint: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
     useAccentColor: 0
+    partOfOutline: 0
   connectorIn: {fileID: 5259132293662734166}
   connectorOut: {fileID: 5259132292386010609}
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   accentColor: {r: 1, g: 1, b: 1, a: 1}
   guid: 
+  accentOutline: 0
   associatedConnections: []
 --- !u!114 &5259132292185539506
 MonoBehaviour:

@@ -77,8 +77,8 @@ public class ViewMode : MonoBehaviour
         instance.viewModeOverlay.SetActive(false);
         instance.toolbar.SetActive(true);
 
+        CM.zoomLevel = 1f;
         CM.zoomEnabled = false;
-        CM.instance.nodeParent.localScale = Vector3.one;
 
         ProjectManager.UpdateAllConnectionLines();
 
