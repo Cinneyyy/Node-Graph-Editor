@@ -9,6 +9,9 @@ public class StartMenu : MonoBehaviour
 
     public void Load()
 	{
+		if(string.IsNullOrEmpty(inputField.text))
+			return;
+
 		ProjectManager.projectName = inputField.text;
 		ProjectManager.createNewProject = false;
 		SceneManager.LoadScene(1);
@@ -16,7 +19,10 @@ public class StartMenu : MonoBehaviour
 
 	public void Create()
 	{
-		ProjectManager.projectName = inputField.text;
+        if(string.IsNullOrEmpty(inputField.text))
+            return;
+
+        ProjectManager.projectName = inputField.text;
 		ProjectManager.createNewProject = true;
 		SceneManager.LoadScene(1);
 	}

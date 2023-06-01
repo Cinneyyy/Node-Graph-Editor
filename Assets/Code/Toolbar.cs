@@ -5,13 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Toolbar : MonoBehaviour
 {
-	public TextMeshProUGUI projectNameDisplay;
-	public GameObject exitPopup, savedPopup;
+	[SerializeField] private TextMeshProUGUI projectNameDisplay;
+	[SerializeField] private GameObject exitPopup, savedPopup;
+
+	public static Toolbar instance { get; private set; }
 
 
-    private void Start()
-        => projectNameDisplay.text = ProjectManager.projectName;
+    private void Awake()
+        => instance = this;
 
+
+	public void SetProjName(string name)
+		=> projectNameDisplay.text = name;
 
     public void Save()
 	{

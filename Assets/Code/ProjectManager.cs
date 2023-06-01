@@ -58,6 +58,7 @@ public class ProjectManager : MonoBehaviour
         else
             json = File.ReadAllText(path);
 
+        Toolbar.instance.SetProjName(Path.GetFileNameWithoutExtension(path));
         LoadJson(json);
     }
 
